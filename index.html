@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chronicle — a historian for your Mac</title>
+<meta name="description" content="Chronicle is a macOS app that answers questions about history in flowing prose, and speaks them aloud. Any period, any continent.">
+
+<meta property="og:title" content="Chronicle — a historian for your Mac">
+<meta property="og:description" content="Ask about any period, any continent. Chronicle answers in prose and reads it aloud.">
+<meta property="og:type" content="website">
+
+<!--
+  ============================================================
+  BEFORE YOU PUBLISH — replace these five things:
+
+    [STRIPE_LINK]    your Stripe payment link
+    [PRICE]          e.g. $29
+    [DOWNLOAD_LINK]  where the .zip of Chronicle.app lives
+    [EULA_URL]       your GitHub EULA.md link
+    [PRIVACY_URL]    your GitHub PRIVACY.md link
+
+  Search for the square brackets — there are no others.
+  ============================================================
+-->
+
+<style>
+:root{
+  --void:#030709; --abyss:#060e12; --panel:#0a1519; --raised:#0e1c21;
+  --core:#73fbf0; --mid:#33c2c7; --accent:#fac270;
+  --t1:#def0f2; --t2:#87abb3; --t3:#57757d;
+  --hair:rgba(51,194,199,.16);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--void);color:var(--t1);font-family:var(--ui);
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+}
+a{color:var(--core);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ---------- hero ---------- */
+#hero{position:relative;min-height:92vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;overflow:hidden}
+#sphere{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+#hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(circle at 50% 45%,transparent 130px,rgba(3,7,9,.82) 560px),
+             linear-gradient(180deg,transparent 60%,var(--void) 100%)}
+.hero-in{position:relative;z-index:2;padding:40px 24px}
+.mark{font-family:var(--mono);font-size:10px;letter-spacing:5px;color:var(--t3);
+  margin-bottom:26px;text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:200;font-size:clamp(40px,7vw,68px);
+  margin:0 0 20px;letter-spacing:1px;line-height:1.1}
+.tag{font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);color:var(--t2);
+  max-width:620px;margin:0 auto 36px;line-height:1.6}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--core);
+  color:var(--void);font-weight:650;font-size:15px;padding:14px 30px;border-radius:999px;
+  transition:transform .18s,box-shadow .18s}
+.cta:hover{text-decoration:none;transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(115,251,240,.28)}
+.beneath{margin-top:16px;font-size:12.5px;color:var(--t3)}
+
+/* ---------- sections ---------- */
+section{padding:88px 0;border-top:1px solid var(--hair)}
+h2{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,34px);
+  margin:0 0 14px}
+.lede{color:var(--t2);font-size:16px;max-width:640px;margin:0 0 44px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:26px}
+.card h3{font-family:var(--serif);font-weight:400;font-size:19px;margin:0 0 10px}
+.card p{color:var(--t2);font-size:14.5px;margin:0}
+
+/* ---------- sample ---------- */
+.sample{background:var(--abyss);border:1px solid var(--hair);border-radius:16px;
+  padding:28px;max-width:720px}
+.q{font-size:14.5px;color:var(--accent);margin:0 0 18px}
+.q::before{content:"You  ";font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  color:var(--t3);display:block;margin-bottom:6px}
+.a{font-family:var(--serif);font-size:16px;line-height:1.75;color:var(--t1);margin:0}
+.a::before{content:"Chronicle";font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  color:var(--t3);display:block;margin-bottom:8px}
+
+/* ---------- pricing ---------- */
+#pricing{text-align:center}
+.price-card{max-width:400px;margin:0 auto;background:var(--panel);
+  border:1px solid rgba(115,251,240,.28);border-radius:20px;padding:40px 32px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.price{font-family:var(--serif);font-size:52px;font-weight:300;margin:0}
+.price small{font-size:15px;color:var(--t3);font-family:var(--ui)}
+.incl{list-style:none;padding:0;margin:26px 0 30px;text-align:left}
+.incl li{padding:7px 0 7px 26px;position:relative;font-size:14.5px;color:var(--t2)}
+.incl li::before{content:"✓";position:absolute;left:0;color:var(--core);font-weight:700}
+
+/* ---------- faq ---------- */
+details{border-bottom:1px solid var(--hair);padding:18px 0}
+summary{cursor:pointer;font-size:15.5px;font-weight:550;list-style:none;
+  display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--core);font-size:19px;line-height:1;flex-shrink:0}
+details[open] summary::after{content:"−"}
+details p{color:var(--t2);font-size:14.5px;margin:14px 0 0;max-width:660px}
+
+/* ---------- notice ---------- */
+.notice{background:rgba(250,194,112,.06);border:1px solid rgba(250,194,112,.22);
+  border-radius:14px;padding:22px 24px}
+.notice h3{margin:0 0 8px;font-size:15px;color:var(--accent);font-family:var(--ui)}
+.notice p{margin:0;font-size:14px;color:var(--t2)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color:var(--t3)}
+.frow{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+.flinks{display:flex;gap:20px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <canvas id="sphere"></canvas>
+  <div class="hero-in">
+    <div class="mark">Chronicle</div>
+    <h1>A historian<br>for your Mac</h1>
+    <p class="tag">
+      Ask about any period, any continent — from the price of bread in
+      Roman Egypt to why the Bronze Age collapsed. Chronicle answers in
+      flowing prose, and reads it aloud in a voice you choose.
+    </p>
+    <a class="cta" href="#pricing">Get Chronicle — [PRICE]</a>
+    <div class="beneath">macOS 14 or later · Apple silicon and Intel</div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <h2>Not a chatbot with a history hat on</h2>
+    <p class="lede">
+      Chronicle is built around a single idea: that a good historian talks to you
+      like an equal, anchors claims in specifics, and tells you when the evidence
+      is thin.
+    </p>
+
+    <div class="sample">
+      <p class="q">What did an ordinary day cost in Roman Egypt?</p>
+      <p class="a">
+        Cheaper than you would guess, and better documented than almost anywhere
+        else in the ancient world — the dry sand of the Fayum preserved the
+        paperwork. In the second century AD an unskilled labourer in the Oxyrhynchus
+        papyri earned somewhere near four to six obols a day. A loaf of bread cost
+        one or two. Wine, the cheap sort, perhaps four obols a jug.<br><br>
+        The caution worth holding onto: these are scattered records across three
+        centuries and a wide province, not a price index. We know what a handful of
+        people paid on particular days, and we are inferring the rest.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What you get</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>A voice worth listening to</h3>
+        <p>Twenty-six natural voices across twenty languages. Pick one and
+        Chronicle reads its answers aloud — or go hands-free and simply talk to it.</p>
+      </div>
+      <div class="card">
+        <h3>The Core</h3>
+        <p>A lattice of 1,750 nodes that pulses on the actual waveform of the
+        voice. Not a loading spinner pretending to listen.</p>
+      </div>
+      <div class="card">
+        <h3>Twenty languages</h3>
+        <p>Choose your language and Chronicle both writes and speaks it —
+        French, German, Spanish, Japanese, Arabic and more.</p>
+      </div>
+      <div class="card">
+        <h3>Yours, on your Mac</h3>
+        <p>Conversations are stored locally as plain files. No account to make,
+        no cloud history, nothing to cancel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>One purchase</h2>
+    <p class="lede" style="margin:0 auto 44px">No subscription, no usage meter to watch.</p>
+
+    <div class="price-card">
+      <p class="price">[PRICE]<br><small>one-time</small></p>
+      <ul class="incl">
+        <li>Chronicle for macOS, all features</li>
+        <li>Use on up to 3 of your Macs</li>
+        <li>All 26 voices, all 20 languages</li>
+        <li>Free updates</li>
+        <li>14-day refund, no questions</li>
+      </ul>
+      <a class="cta" href="[STRIPE_LINK]">Buy Chronicle</a>
+      <div class="beneath">Licence key delivered instantly after checkout</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Honest about what it is</h2>
+    <div class="notice">
+      <h3>Chronicle is powered by AI, and AI gets things wrong</h3>
+      <p>
+        Answers are generated by a language model, not written or checked by a
+        person. They can contain wrong dates, invented details or confident
+        statements that are simply false. Chronicle is a wonderful way to start
+        an enquiry and a poor way to end one — verify anything you intend to
+        rely on, cite or submit. We would rather tell you this here than have
+        you discover it later.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions</h2>
+
+    <details>
+      <summary>What do I need to run it?</summary>
+      <p>A Mac running macOS 14 (Sonoma) or later. Apple silicon or Intel.
+      About 30MB of disk. An internet connection, since answers are generated
+      in the cloud.</p>
+    </details>
+
+    <details>
+      <summary>How do I get it after paying?</summary>
+      <p>Checkout takes you straight to a page showing your licence key. Download
+      Chronicle, open Settings, paste the key, and you're running. The key works
+      on up to three Macs.</p>
+    </details>
+
+    <details>
+      <summary>Is there a subscription?</summary>
+      <p>No. One purchase, yours to keep. There's a generous monthly fair-use
+      allowance on the AI service that ordinary use will never come close to.</p>
+    </details>
+
+    <details>
+      <summary>Can I get a refund?</summary>
+      <p>Yes — within 14 days, for any reason, no explanation needed. Email
+      <a href="mailto:spufarobud@gmail.com">spufarobud@gmail.com</a>.</p>
+    </details>
+
+    <details>
+      <summary>What happens to what I type?</summary>
+      <p>Your conversations are stored on your own Mac. The text is sent to xAI
+      to generate the reply and the speech — that's how it works. We don't store
+      your conversations, sell data, or run ads. Full detail in the
+      <a href="[PRIVACY_URL]">privacy policy</a>.</p>
+    </details>
+
+    <details>
+      <summary>Can I use my own API key instead?</summary>
+      <p>Yes. There's an advanced setting where you can supply your own xAI key,
+      in which case Chronicle talks to xAI directly and nothing passes through
+      our servers at all.</p>
+    </details>
+
+    <details>
+      <summary>Is it good for schoolwork?</summary>
+      <p>As a way in, yes — for finding the shape of a topic and what to read
+      next. Not as a source. Never cite it, and check anything you repeat
+      against a real reference.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap frow">
+    <div>© 2026 ChronicleAI</div>
+    <div class="flinks">
+      <a href="mailto:spufarobud@gmail.com">Support</a>
+      <a href="[EULA_URL]">Terms</a>
+      <a href="[PRIVACY_URL]">Privacy</a>
+      <a href="[DOWNLOAD_LINK]">Download</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* The Core, running live in the hero — same maths as the app.
+   Fibonacci lattice, flow-field displacement, perspective projection, and
+   particles batched by brightness so it costs a handful of fills per frame. */
+(function () {
+  const cv = document.getElementById("sphere");
+  const g = cv.getContext("2d", { alpha: true });
+  const N = 900, BUCKETS = 5;
+
+  const dir = new Float32Array(N * 3), shell = new Float32Array(N);
+  const phase = new Float32Array(N), rate = new Float32Array(N), size = new Float32Array(N);
+  const sx = new Float32Array(N), sy = new Float32Array(N);
+  const al = new Float32Array(N), rad = new Float32Array(N);
+
+  let seed = 0xC4710C1E >>> 0;
+  const rnd = () => {
+    seed ^= seed << 13; seed >>>= 0; seed ^= seed >> 17; seed ^= seed << 5; seed >>>= 0;
+    return seed / 4294967296;
+  };
+
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1), y = 1 - t * 2, ring = Math.sqrt(Math.max(0, 1 - y * y));
+    const th = golden * i;
+    let x = Math.cos(th) * ring + (rnd() - .5) * .11;
+    let yy = y + (rnd() - .5) * .11;
+    let z = Math.sin(th) * ring + (rnd() - .5) * .11;
+    const len = Math.hypot(x, yy, z) || 1;
+    dir[i * 3] = x / len; dir[i * 3 + 1] = yy / len; dir[i * 3 + 2] = z / len;
+    shell[i] = .30 + .72 * Math.pow(rnd(), .42);
+    phase[i] = rnd() * Math.PI * 2;
+    rate[i]  = .6 + rnd() * 2;
+    size[i]  = .55 + rnd() * 1;
+  }
+
+  let yaw = 0, elapsed = 0, last = 0, w = 0, h = 0, dpr = 1;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = cv.clientWidth; h = cv.clientHeight;
+    if (!w || !h) return false;
+    cv.width = w * dpr | 0; cv.height = h * dpr | 0;
+    return true;
+  }
+  window.addEventListener("resize", resize);
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!resize()) return;
+    const dt = last ? Math.min((now - last) / 1000, .1) : 1 / 60;
+    last = now;
+
+    elapsed += dt; yaw += dt * .085;
+    const pit = -.15 + Math.sin(elapsed * .21) * .11;
+    const cy = Math.cos(yaw), sy_ = Math.sin(yaw), cp = Math.cos(pit), sp = Math.sin(pit);
+    const m00 = cy, m02 = sy_, m10 = sy_ * sp, m11 = cp, m12 = -cy * sp,
+          m20 = -sy_ * cp, m21 = sp, m22 = cy * cp;
+
+    const base = Math.min(w, h) * .36 * (1 + Math.sin(elapsed * .63) * .022);
+    const pscale = (Math.min(w, h) * .36) / 210, focal = 3.6;
+    const cx = w / 2, ccy = h / 2;
+
+    for (let i = 0; i < N; i++) {
+      const dx = dir[i * 3], dy = dir[i * 3 + 1], dz = dir[i * 3 + 2], ph = phase[i];
+      const a = Math.sin(dx * 5.8 + elapsed * .83 + ph);
+      const b = Math.cos(dy * 6.6 - elapsed * .61 + ph * 1.7);
+      const c = Math.sin(dz * 4.8 + elapsed * 1.07 - ph);
+      const r = shell[i] * (1 + ((a * b + c * .7) * .5) * .055);
+      const X = dx * r, Y = dy * r, Z = dz * r;
+      const rx = m00 * X + m02 * Z;
+      const ry = m10 * X + m11 * Y + m12 * Z;
+      const rz = m20 * X + m21 * Y + m22 * Z;
+      const p = focal / (focal - rz);
+      sx[i] = cx + rx * base * p;
+      sy[i] = ccy - ry * base * p;
+      const d = Math.max(0, Math.min(1, (rz + 1.15) / 2.3));
+      al[i] = Math.max(0, Math.min(1, (.10 + .90 * d * d) * (.72 + .28 * Math.sin(elapsed * rate[i] + ph))));
+      rad[i] = (.62 + 1.35 * d) * size[i] * pscale;
+    }
+
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    g.globalCompositeOperation = "lighter";
+
+    const gr = Math.min(w, h) * .36 * 1.55;
+    const grad = g.createRadialGradient(cx, ccy, 0, cx, ccy, gr);
+    grad.addColorStop(0, "rgba(51,194,199,.16)");
+    grad.addColorStop(.32, "rgba(51,194,199,.07)");
+    grad.addColorStop(1, "rgba(51,194,199,0)");
+    g.fillStyle = grad;
+    g.beginPath(); g.arc(cx, ccy, gr, 0, Math.PI * 2); g.fill();
+
+    const buckets = [], halo = new Path2D();
+    for (let b = 0; b < BUCKETS; b++) buckets.push(new Path2D());
+    for (let i = 0; i < N; i++) {
+      if (al[i] <= .05 || rad[i] <= .15) continue;
+      const b = Math.min(BUCKETS - 1, (al[i] * BUCKETS) | 0);
+      buckets[b].moveTo(sx[i] + rad[i], sy[i]);
+      buckets[b].arc(sx[i], sy[i], rad[i], 0, Math.PI * 2);
+      if (b >= BUCKETS - 2) {
+        const rr = rad[i] * 2.1;
+        halo.moveTo(sx[i] + rr, sy[i]);
+        halo.arc(sx[i], sy[i], rr, 0, Math.PI * 2);
+      }
+    }
+    for (let b = 0; b < BUCKETS; b++) {
+      const t = b / (BUCKETS - 1);
+      const R = Math.round((.06 + (.45 - .06) * t + (1 - t) * 0) * 255 * (1 + t * .3));
+      const G = Math.round((.42 + (.98 - .42) * t) * 255);
+      const B = Math.round((.47 + (.94 - .47) * t) * 255);
+      g.fillStyle = `rgba(${R},${G},${B},${(.16 + .84 * t).toFixed(3)})`;
+      g.fill(buckets[b]);
+    }
+    g.fillStyle = "rgba(115,251,240,.10)";
+    g.fill(halo);
+    g.globalCompositeOperation = "source-over";
+  }
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
