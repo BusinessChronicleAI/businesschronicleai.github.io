@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy — Chronicle</title>
+<meta name="description" content="How Chronicle handles your data, on macOS and in the browser.">
+<style>
+  :root{ color-scheme: dark; }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0; background:#060e12; color:#87abb3;
+    font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    padding:0 24px 96px;
+  }
+  .wrap{ max-width:760px; margin:0 auto; }
+  header{
+    padding:40px 0 28px; margin-bottom:36px;
+    border-bottom:1px solid rgba(51,194,199,.18);
+  }
+  .brand{
+    display:inline-flex; align-items:center; gap:12px;
+    text-decoration:none; color:#def0f2;
+    font:500 13px/1 -apple-system,sans-serif; letter-spacing:.22em; text-transform:uppercase;
+  }
+  .dot{
+    width:26px; height:26px; border-radius:50%;
+    background:radial-gradient(circle at 50% 45%, #73fbf0 0%, #1d8f95 42%, #061014 78%);
+    box-shadow:0 0 14px rgba(115,251,240,.4);
+  }
+  h1{ color:#def0f2; font:400 34px/1.25 Georgia,"Times New Roman",serif; margin:0 0 10px; }
+  h2{
+    color:#def0f2; font:400 23px/1.3 Georgia,serif;
+    margin:44px 0 14px; padding-top:22px;
+    border-top:1px solid rgba(51,194,199,.13);
+  }
+  h2:first-of-type{ border-top:0; padding-top:0; }
+  h3{ color:#def0f2; font:600 16px/1.4 -apple-system,sans-serif; margin:26px 0 8px; }
+  p{ margin:0 0 16px; }
+  strong{ color:#def0f2; font-weight:600; }
+  a{ color:#73fbf0; }
+  a:hover{ color:#a8fdf6; }
+  ul,ol{ margin:0 0 18px; padding-left:22px; }
+  li{ margin:0 0 9px; }
+  hr{ border:0; border-top:1px solid rgba(51,194,199,.15); margin:34px 0; }
+  code{
+    font:13.5px ui-monospace,Menlo,monospace; color:#73fbf0;
+    background:#030709; border:1px solid rgba(51,194,199,.22);
+    border-radius:5px; padding:1px 6px;
+  }
+  table{ border-collapse:collapse; width:100%; margin:0 0 20px; font-size:14.5px; }
+  th,td{ text-align:left; padding:9px 12px; border-bottom:1px solid rgba(51,194,199,.14); }
+  th{ color:#def0f2; font-weight:600; }
+  .updated{ color:#57757d; font-size:14px; margin:0 0 4px; }
+  footer{
+    margin-top:56px; padding-top:24px;
+    border-top:1px solid rgba(51,194,199,.18);
+    font-size:14px; color:#57757d;
+  }
+  footer a{ margin-right:18px; }
+  @media (max-width:520px){ h1{font-size:27px} h2{font-size:20px} }
+</style>
+</head><body><div class="wrap">
+<header><a class="brand" href="./"><span class="dot"></span>Chronicle</a></header>
+<h1>Chronicle — Privacy Policy</h1>
+<p class="updated"><strong>Last updated: 27 July 2026</strong></p>
+<p><strong>ChronicleAI</strong> ("we", "us") makes Chronicle, available as a macOS application
+and as a browser extension for Chrome, Edge and Firefox. This policy covers
+both, and says which is which wherever they differ. It explains what happens to
+your data. It is written to be read, not to be impenetrable.</p>
+<hr />
+<h2>The short version</h2>
+<ul>
+<li>Your conversations are stored <strong>on your own machine</strong>, not on our servers.</li>
+<li>The <strong>text</strong> of your conversations is sent to <strong>xAI</strong> to generate replies and
+  speech. That is how the app works.</li>
+<li>We hold almost nothing: a licence key, an anonymous install ID, and a monthly
+  character counter.</li>
+<li>The extension can read the page you are on, but <strong>only if you switch that on</strong> —
+  it is off by default.</li>
+<li>We do not sell your data. We do not run ads. We do not build a profile of you.</li>
+</ul>
+<hr />
+<h2>What stays on your machine</h2>
+<p>Stored locally, never transmitted to us:</p>
+<ul>
+<li><strong>Your conversations.</strong> In the Mac app, as plain JSON in
+  <code>~/Library/Application Support/Chronicle/</code>. In the extension, in the
+  browser's own extension storage, which is sandboxed to Chronicle — ordinary
+  web pages cannot read it. Delete them any time from Settings ▸ Data.</li>
+<li><strong>Your licence key.</strong> In the Mac app, in your macOS login Keychain. In the
+  extension, in that same sandboxed extension storage.</li>
+<li><strong>Your preferences</strong>, alongside the above.</li>
+</ul>
+<h2>What is sent to xAI</h2>
+<p>To answer you at all, Chronicle sends to xAI's API:</p>
+<ul>
+<li>The text of your question and the recent conversation for context</li>
+<li>Chronicle's system instructions</li>
+<li>For spoken replies, the text to be read aloud, along with your chosen voice
+  and language</li>
+</ul>
+<p>xAI processes this on their servers and returns the reply or audio. Their
+handling of it is governed by <strong>xAI's privacy policy and terms</strong>, which we do not
+control. If you would rather your text not go to xAI, do not use Chronicle.</p>
+<p><strong>Do not enter information you would not want processed by a third-party AI
+service.</strong> Treat it as you would any online service: not the place for
+passwords, financial details, medical records or anyone else's private
+information.</p>
+<h2>What passes through our relay</h2>
+<p>If you use a licence key, requests travel through our server on the way to xAI.
+It holds:</p>
+<ul>
+<li><strong>Your licence key</strong>, and which plan it belongs to</li>
+<li><strong>An anonymous install identifier</strong> — a random ID created on first launch, used
+  only to count how many machines a licence is active on. It is not derived from
+  your hardware, your name, or anything about you.</li>
+<li><strong>A monthly character count</strong> per licence, for fair-use limits</li>
+<li><strong>The email address</strong> you used at checkout, supplied by Stripe</li>
+</ul>
+<p>We do <strong>not</strong> store the content of your conversations. Requests are forwarded and
+not retained.</p>
+<p>If you use your own xAI API key instead, nothing touches our servers at all.</p>
+<h2>Payments</h2>
+<p>Payments are handled by <strong>Stripe</strong>. We never see or store your card details.
+Stripe provides us with your email address and whether the payment succeeded.
+Stripe's own privacy policy governs what they hold.</p>
+<h2>Microphone and speech</h2>
+<p>If you use dictation or voice mode:</p>
+<ul>
+<li><strong>In the Mac app</strong>, audio is transcribed by <strong>Apple's speech recognition</strong>, on
+  your device where your Mac supports it.</li>
+<li><strong>In the browser extension</strong>, audio is transcribed by your <strong>browser's</strong> speech
+  recognition. In Chrome and Edge this means <strong>audio is sent to Google's servers</strong>
+  for transcription, under Google's terms, not ours. Firefox does not support
+  speech recognition at all, so dictation is unavailable there.</li>
+<li>We never receive your audio in either case, and no recording is stored by us.</li>
+<li>Only the resulting text follows the normal path described above.</li>
+</ul>
+<p>Microphone access is only active while you are dictating.</p>
+<p>If you would rather no audio leave your machine, use the Mac app, or type
+instead of dictating.</p>
+<h2>Reading the page you are on (browser extension only)</h2>
+<p>The extension can read the page you are currently viewing, so you can ask about
+an article without pasting it.</p>
+<ul>
+<li><strong>This is off by default.</strong> You must turn it on in Settings ▸ Data.</li>
+<li>Your browser asks for permission the first time you enable it. Turning the
+  setting back off revokes that permission.</li>
+<li>Page text is read <strong>only at the moment you send a message</strong> — never in the
+  background, and never while the setting is off.</li>
+<li>What is read is the visible text of that one page, truncated to 12,000
+  characters. It goes to xAI along with your question so the reply can address
+  it.</li>
+<li><strong>We do not store page content</strong>, and we do not record which pages you visit.
+  There is no browsing history on our side to keep.</li>
+</ul>
+<p>Because page text is sent to xAI, do not use this feature on pages containing
+information you would not want processed by a third-party AI service — banking
+pages, medical portals, private documents, or anyone else's personal data.</p>
+<h2>What we do not do</h2>
+<ul>
+<li>We do not sell or rent your data</li>
+<li>We do not show advertising</li>
+<li>We do not track your usage for analytics or marketing</li>
+<li>We do not use your conversations to train anything</li>
+</ul>
+<h2>How long we keep things</h2>
+<ul>
+<li>Licence records: while your licence is active, plus 12 months</li>
+<li>Usage counters: about 70 days, then deleted automatically</li>
+<li>Conversations: on your own machine, for as long as you keep them</li>
+</ul>
+<h2>Your rights</h2>
+<p>Depending on where you live, you may have the right to access, correct, export
+or delete the personal data we hold, or to object to its processing. Since what
+we hold is limited to a licence key, an install ID, a counter and an email
+address, most requests are quick. Email <strong>spufarobud@gmail.com</strong> and we will
+respond within 30 days.</p>
+<p>To delete everything on your side: Settings ▸ Data ▸ Delete All Inquiries, then
+remove Chronicle. To have your licence record deleted, email us — note this
+deactivates the licence.</p>
+<h2>Children</h2>
+<p>Chronicle is not intended for anyone under 13, and we do not knowingly collect
+data from children.</p>
+<h2>Changes</h2>
+<p>We will post material changes here and update the date at the top. If the change
+is significant, we will email licence holders.</p>
+<h2>Contact</h2>
+<p><strong>ChronicleAI</strong>
+spufarobud@gmail.com</p>
+<footer>
+  <a href="./">Home</a>
+  <a href="./privacy.html">Privacy</a>
+  <a href="./eula.html">Terms</a>
+  <a href="mailto:spufarobud@gmail.com">spufarobud@gmail.com</a>
+</footer>
+</div></body></html>
