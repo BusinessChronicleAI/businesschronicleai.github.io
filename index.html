@@ -12,13 +12,9 @@
 
 <!--
   ============================================================
-  BEFORE YOU PUBLISH — replace these five things:
+  BEFORE YOU PUBLISH — one thing left to replace:
 
-    [STRIPE_LINK]    your Stripe payment link
-    [PRICE]          e.g. $29
-    [DOWNLOAD_LINK]  where the .zip of Chronicle.app lives
-    [EULA_URL]       your GitHub EULA.md link
-    [PRIVACY_URL]    your GitHub PRIVACY.md link
+    [BROWSER_STRIPE_LINK]  your $10 Stripe payment link
 
   Search for the square brackets — there are no others.
   ============================================================
@@ -63,6 +59,8 @@ h1{font-family:var(--serif);font-weight:200;font-size:clamp(40px,7vw,68px);
   transition:transform .18s,box-shadow .18s}
 .cta:hover{text-decoration:none;transform:translateY(-2px);
   box-shadow:0 12px 40px rgba(115,251,240,.28)}
+/* two buttons side by side, wrapping to a stack on narrow screens */
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .beneath{margin-top:16px;font-size:12.5px;color:var(--t3)}
 
 /* ---------- sections ---------- */
@@ -91,11 +89,16 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,34px);
 .price-card{max-width:400px;margin:0 auto;background:var(--panel);
   border:1px solid rgba(115,251,240,.28);border-radius:20px;padding:40px 32px;
   box-shadow:0 20px 60px rgba(0,0,0,.5)}
+/* two cards side by side; each stops centring itself inside the grid */
+.price-grid{display:grid;gap:22px;max-width:860px;margin:0 auto;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.price-grid .price-card{max-width:none;margin:0}
 .price{font-family:var(--serif);font-size:52px;font-weight:300;margin:0}
 .price small{font-size:15px;color:var(--t3);font-family:var(--ui)}
 .incl{list-style:none;padding:0;margin:26px 0 30px;text-align:left}
 .incl li{padding:7px 0 7px 26px;position:relative;font-size:14.5px;color:var(--t2)}
 .incl li::before{content:"✓";position:absolute;left:0;color:var(--core);font-weight:700}
+.price-note{margin:26px auto 0;font-size:13px;color:var(--t3);max-width:560px}
 
 /* ---------- faq ---------- */
 details{border-bottom:1px solid var(--hair);padding:18px 0}
@@ -130,7 +133,10 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
       Roman Egypt to why the Bronze Age collapsed. Chronicle answers in
       flowing prose, and reads it aloud in a voice you choose.
     </p>
-    <a class="cta" href="#pricing">Get Chronicle — $20</a>
+    <div class="cta-row">
+      <a class="cta" href="#pricing">Get Chronicle — $20</a>
+      <a class="cta" href="#pricing">Get Chronicle Browser — $10</a>
+    </div>
     <div class="beneath">macOS 14 or later · Apple silicon and Intel</div>
   </div>
 </header>
@@ -168,7 +174,7 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
     <div class="grid">
       <div class="card">
         <h3>A voice worth listening to</h3>
-        <p>Twenty-six natural voices across twenty languages. Pick one and
+        <p>Twenty-six natural voices across sixty languages. Pick one and
         Chronicle reads its answers aloud — or go hands-free and simply talk to it.</p>
       </div>
       <div class="card">
@@ -177,9 +183,9 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
         voice. Not a loading spinner pretending to listen.</p>
       </div>
       <div class="card">
-        <h3>Twenty languages</h3>
+        <h3>Sixty languages</h3>
         <p>Choose your language and Chronicle both writes and speaks it —
-        French, German, Spanish, Japanese, Arabic and more.</p>
+        French, German, Spanish, Japanese, Icelandic, Arabic and more.</p>
       </div>
       <div class="card">
         <h3>Yours, on your Mac</h3>
@@ -195,18 +201,40 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
     <h2>One purchase</h2>
     <p class="lede" style="margin:0 auto 44px">No subscription, no usage meter to watch.</p>
 
-    <div class="price-card">
-      <p class="price">$20<br><small>one-time</small></p>
-      <ul class="incl">
-        <li>Chronicle for macOS, all features</li>
-        <li>Use on up to 3 of your Macs</li>
-        <li>All 26 voices, all 20 languages</li>
-        <li>Free updates</li>
-        <li>14-day refund, no questions</li>
-      </ul>
-      <a class="cta" href="https://buy.stripe.com/fZufZh84G8t0cFY0f2cjS00">Buy Chronicle</a>
-      <div class="beneath">Licence key delivered instantly after checkout</div>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <p class="price">$20<br><small>one-time</small></p>
+        <ul class="incl">
+          <li>Chronicle for macOS, all features</li>
+          <li>Use on up to 3 of your Macs</li>
+          <li>All 26 voices, all 60 languages</li>
+          <li>Free updates</li>
+          <li>14-day refund, no questions</li>
+        </ul>
+        <a class="cta" href="https://buy.stripe.com/fZufZh84G8t0cFY0f2cjS00">Buy Chronicle</a>
+        <div class="beneath">Licence key delivered instantly after checkout</div>
+      </div>
+
+      <div class="price-card">
+        <p class="price">$10<br><small>one-time</small></p>
+        <ul class="incl">
+          <li>Chronicle for Firefox, Chrome and Edge</li>
+          <li>Use in up to 3 browsers</li>
+          <li>All 26 voices, all 60 languages</li>
+          <li>Free updates</li>
+          <li>14-day refund, no questions</li>
+        </ul>
+        <a class="cta" href="[BROWSER_STRIPE_LINK]">Get Chronicle Browser</a>
+        <div class="beneath">Licence key delivered instantly after checkout</div>
+      </div>
+
     </div>
+
+    <p class="price-note">
+      Separate licences — a browser key does not unlock the Mac app, and the
+      other way round.
+    </p>
   </div>
 </section>
 
@@ -233,16 +261,26 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
 
     <details>
       <summary>What do I need to run it?</summary>
-      <p>A Mac running macOS 14 (Sonoma) or later. Apple silicon or Intel.
-      About 30MB of disk. An internet connection, since answers are generated
-      in the cloud.</p>
+      <p>For the Mac app: a Mac running macOS 14 (Sonoma) or later, Apple silicon
+      or Intel, about 30MB of disk. For the browser version: Firefox, Chrome or
+      Edge, on any operating system. Both need an internet connection, since
+      answers are generated in the cloud.</p>
+    </details>
+
+    <details>
+      <summary>What's the difference between the two?</summary>
+      <p>The same historian, the same voices, the same Core. The Mac app is a
+      native application with on-device dictation and Keychain storage. The
+      browser version lives in your sidebar and can read the page you're looking
+      at, so you can ask about an article without pasting it. Licences are
+      separate.</p>
     </details>
 
     <details>
       <summary>How do I get it after paying?</summary>
       <p>Checkout takes you straight to a page showing your licence key. Download
       Chronicle, open Settings, paste the key, and you're running. The key works
-      on up to three Macs.</p>
+      on up to three machines.</p>
     </details>
 
     <details>
@@ -259,10 +297,10 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
 
     <details>
       <summary>What happens to what I type?</summary>
-      <p>Your conversations are stored on your own Mac. The text is sent to xAI
+      <p>Your conversations are stored on your own machine. The text is sent to xAI
       to generate the reply and the speech — that's how it works. We don't store
       your conversations, sell data, or run ads. Full detail in the
-      <a href="[PRIVACY_URL]">privacy policy</a>.</p>
+      <a href="https://github.com/BusinessChronicleAI/chronicle-legal/blob/main/PRIVACY.md">privacy policy</a>.</p>
     </details>
 
     <details>
