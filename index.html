@@ -89,6 +89,16 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,34px);
 .incl li{padding:7px 0 7px 26px;position:relative;font-size:14.5px;color:var(--t2)}
 .incl li::before{content:"✓";position:absolute;left:0;color:var(--core);font-weight:700}
 .price-note{margin:26px auto 0;font-size:13px;color:var(--t3);max-width:560px}
+/* The Mac edition is finished but not yet notarized by Apple, so it cannot
+   be installed cleanly. Shown, priced, and deliberately not purchasable. */
+.price-card.soon{border-color:var(--hair);opacity:.72}
+.cta-soon{display:inline-flex;align-items:center;gap:10px;background:transparent;
+  border:1px solid var(--t3);color:var(--t3);font-weight:650;font-size:15px;
+  padding:13px 30px;border-radius:999px;cursor:default}
+.soon-tag{display:inline-block;font-family:var(--mono);font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--accent);
+  border:1px solid rgba(250,194,112,.4);border-radius:999px;
+  padding:4px 12px;margin-bottom:14px}
 
 /* ---------- faq ---------- */
 details{border-bottom:1px solid var(--hair);padding:18px 0}
@@ -124,10 +134,9 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
       flowing prose, and reads it aloud in a voice you choose.
     </p>
     <div class="cta-row">
-      <a class="cta" href="#pricing">Get Chronicle — $20</a>
-      <a class="cta" href="#pricing">Get Chronicle Browser — $10</a>
+      <a class="cta" href="#pricing">Get Chronicle — $10</a>
     </div>
-    <div class="beneath">macOS 14 or later · Firefox, Chrome and Edge on any system</div>
+    <div class="beneath">Firefox, Chrome and Edge · the Mac app is coming shortly</div>
   </div>
 </header>
 
@@ -193,7 +202,8 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
 
     <div class="price-grid">
 
-      <div class="price-card">
+      <div class="price-card soon">
+        <div class="soon-tag">Coming soon</div>
         <p class="price">$20<br><small>one-time</small></p>
         <ul class="incl">
           <li>Chronicle for macOS, all features</li>
@@ -202,8 +212,10 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
           <li>Free updates</li>
           <li>14-day refund, no questions</li>
         </ul>
-        <a class="cta" href="https://buy.stripe.com/fZufZh84G8t0cFY0f2cjS00">Buy Chronicle</a>
-        <div class="beneath">Licence key delivered instantly after checkout</div>
+        <span class="cta-soon">Not yet available</span>
+        <div class="beneath">Awaiting Apple notarization. Email
+          <a href="mailto:spufarobud@gmail.com">spufarobud@gmail.com</a>
+          and I'll tell you the day it's ready.</div>
       </div>
 
       <div class="price-card">
@@ -222,8 +234,11 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
     </div>
 
     <p class="price-note">
-      Separate licences — a browser key does not unlock the Mac app, and the
-      other way round.
+      The Mac app is finished, but macOS blocks apps that Apple has not signed,
+      and that paperwork is still in progress. Rather than sell you something
+      that throws a security warning on first launch, it stays off sale until
+      it installs properly. Licences are separate in any case — a browser key
+      will not unlock the Mac app.
     </p>
   </div>
 </section>
@@ -248,6 +263,16 @@ footer{border-top:1px solid var(--hair);padding:44px 0 60px;font-size:13px;color
 <section>
   <div class="wrap">
     <h2>Questions</h2>
+
+    <details>
+      <summary>When is the Mac app available?</summary>
+      <p>The app itself is finished — it is waiting on Apple's notarization,
+      which is a signing process every Mac app outside the App Store needs.
+      Without it macOS shows a security warning and refuses the first launch,
+      and that is not something worth charging for. Email
+      <a href="mailto:spufarobud@gmail.com">spufarobud@gmail.com</a> and I'll
+      let you know when it's done.</p>
+    </details>
 
     <details>
       <summary>What do I need to run it?</summary>
